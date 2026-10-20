@@ -1,0 +1,42 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+  application:
+    name: workforce-backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/workforce}
+    username: ${DB_USER:workforce}
+    password: ${DB_PASSWORD:workforce}
+  jpa:
+    hibernate:
+      ddl-auto: validate   # schema is owned by Flyway migrations
+    open-in-view: false
+    properties:
+      hibernate.jdbc.batch_size: 500
+  flyway:
+    enabled: true
+  batch:
+    job:
+      enabled: false       # jobs are launched on demand by the upload API
+    jdbc:
+      initialize-schema: never  # created by Flyway V2
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-me-to-a-long-random-secret-of-at-least-32-bytes!!}
+    expiration-minutes: 480
+  cors:
+    allowed-origins: ${CORS_ORIGINS:*}
+  import:
+    upload-dir: ${UPLOAD_DIR:./data/uploads}
+    chunk-size: 500
+  seed-users: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
