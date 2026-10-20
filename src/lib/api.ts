@@ -1,5 +1,5 @@
 // Typed client for the Spring Boot REST API (see backend/README.md for the contract).
-export const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "http://localhost:8081/api";
+export const API_URL = (import.meta.env["VITE_API_URL"] as string | undefined) ?? "http://localhost:8081/api";
 
 const TOKEN_KEY = "wf_auth";
 
@@ -115,7 +115,7 @@ export interface EmployeeQuery {
   size: number;
   sort: string;
   search?: string;
-  departmentId?: number;
+  departmentId?: number | undefined;
 }
 
 const qs = (o: Record<string, string | number | undefined>) =>
