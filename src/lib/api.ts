@@ -1,5 +1,7 @@
-// Typed client for the Spring Boot REST API (see backend/README.md for the contract).
-export const API_URL = (import.meta.env["VITE_API_URL"] as string | undefined) ?? "http://localhost:8081/api";
+// Public URL compiled into the browser bundle; never put backend secrets in VITE_* variables.
+const configuredApiUrl = import.meta.env["VITE_API_URL"] as string | undefined;
+const developmentApiUrl = import.meta.env.DEV ? "http://localhost:8081/api" : undefined;
+export const API_URL = (configuredApiUrl ?? developmentApiUrl)?.replace(/\/+$/, "");
 
 const TOKEN_KEY = "wf_auth";
 
@@ -35,6 +37,9 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  if (!API_URL) {
+    throw new ApiError(0, "VITE_API_URL must be configured when building the production frontend.");
+  }
   const session = getSession();
   const headers = new Headers(init.headers);
   if (session) headers.set("Authorization", `Bearer ${session.token}`);

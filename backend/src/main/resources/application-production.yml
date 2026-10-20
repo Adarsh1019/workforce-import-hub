@@ -1,0 +1,40 @@
+server:
+  shutdown: graceful
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 20000
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+  cors:
+    allowed-origins: ${CORS_ORIGINS}
+  import:
+    upload-dir: ${UPLOAD_DIR:/data/uploads}
+  seed-users: false
+  bootstrap:
+    enabled: ${BOOTSTRAP_USERS_ENABLED:false}
+    admin-username: ${BOOTSTRAP_ADMIN_USERNAME:}
+    admin-password: ${BOOTSTRAP_ADMIN_PASSWORD:}
+    hr-username: ${BOOTSTRAP_HR_USERNAME:}
+    hr-password: ${BOOTSTRAP_HR_PASSWORD:}
