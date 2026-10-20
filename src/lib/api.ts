@@ -159,4 +159,4 @@ export const api = {
 
 export const isRunning = (s: JobStatus) => s === "STARTING" || s === "STARTED";
 export const money = (n: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
+  new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n);
