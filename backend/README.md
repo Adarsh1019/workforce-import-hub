@@ -9,7 +9,7 @@ docker compose up --build
 
 - API: http://localhost:8081/api
 - Swagger UI: http://localhost:8081/swagger-ui.html
-- Demo users: `admin / admin123` (ADMIN), `hr / hr123` (HR)
+- Demo users: `admin / 12345` (ADMIN), `hr / 12345` (HR)
 
 Run locally without Docker for the API (needs Java 21 + Maven and a running PostgreSQL):
 

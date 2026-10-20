@@ -45,7 +45,10 @@ function Imports() {
 
   const pick = (f?: File) => {
     if (!f) return;
-    if (!f.name.toLowerCase().endsWith(".csv")) return toast.error("Please choose a .csv file");
+    if (!f.name.toLowerCase().endsWith(".csv")) {
+      toast.error("Please choose a .csv file");
+      return;
+    }
     setFile(f);
   };
 

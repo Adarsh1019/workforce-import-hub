@@ -20,7 +20,7 @@ export const Route = createFileRoute("/login")({
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("12345");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -61,7 +61,7 @@ function Login() {
           <div>
             <h2 className="text-2xl font-semibold">Sign in</h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Demo accounts: <b>admin / admin123</b> or <b>hr / hr123</b>
+              Demo accounts: <b>admin / 12345</b> or <b>hr / 12345</b>
             </p>
           </div>
           <div className="space-y-2">

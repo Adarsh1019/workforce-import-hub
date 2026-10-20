@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-/** Creates the demo accounts admin/admin123 and hr/hr123 on first start. Disable with app.seed-users=false. */
+/** Creates the demo accounts admin/12345 and hr/12345 on first start. Disable with app.seed-users=false. */
 @Component
 @ConditionalOnProperty(name = "app.seed-users", havingValue = "true")
 public class UserSeeder implements CommandLineRunner {
@@ -22,8 +22,8 @@ public class UserSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        create("admin", "admin123", Role.ADMIN);
-        create("hr", "hr123", Role.HR);
+        create("admin", "12345", Role.ADMIN);
+        create("hr", "12345", Role.HR);
     }
 
     private void create(String username, String password, Role role) {

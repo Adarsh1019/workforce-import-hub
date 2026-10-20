@@ -51,13 +51,13 @@ class WorkforceIntegrationTest {
 
     @Test
     void hrCannotDeleteDepartments() throws Exception {
-        mvc.perform(delete("/api/departments/1").header("Authorization", token("hr", "hr123")))
+        mvc.perform(delete("/api/departments/1").header("Authorization", token("hr", "12345")))
                 .andExpect(status().isForbidden());
     }
 
     @Test
     void importsValidRowsAndRejectsBadOnes() throws Exception {
-        String auth = token("admin", "admin123");
+        String auth = token("admin", "12345");
         String csv = """
                 name,email,department,role,salary,joiningDate
                 Test One,test.one@example.com,Sales,Area Sales Manager,70000,2022-01-10
